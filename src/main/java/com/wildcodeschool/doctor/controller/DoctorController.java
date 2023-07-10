@@ -17,20 +17,20 @@ public class DoctorController {
     @ResponseBody
     public Doctor doctor(@PathVariable int number) {
 
-    if(1 <= number && number <= 12)
-    {
-        throw new ResponseStatusException(HttpStatus.SEE_OTHER, "");
+        if(1 <= number && number <= 12)
+        {
+            throw new ResponseStatusException(HttpStatus.SEE_OTHER, "");
+        }
+        
+        else if(number == 13)
+        {
+            return new Doctor(number, "Jodie Whittaker");
+        }
+
+        else
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Impossible de récupérer l'incarnation " +number);
+        }
 
     }
-    else if(number == 13)
-    {
-                return new Doctor(number, "Jodie Whittaker");
-    }
-
-    else
-    {
-
-    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Impossible de récupérer l'incarnation " +Integer.toString(number));
-    }
-    }
-}
+}//
